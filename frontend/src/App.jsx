@@ -43,8 +43,14 @@ function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    setCurrentPage(1);
-    fetchNews();
+    var searchField = document.getElementById("inputsearch");
+    if (searchField.value.trim() === "") {
+        searchField.focus();
+        return false;
+    }else{
+      fetchNews()
+      setCurrentPage(1);
+    }
   };
 
   return (

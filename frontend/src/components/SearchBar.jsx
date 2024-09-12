@@ -27,6 +27,7 @@ const SearchBar = ({ query, onQueryChange }) => {
           placeholder="Search news..."
           className="outline-none w-screen py-2 px-12 rounded-xl"
           required
+          id='inputsearch'
         />
       </div>
     </div>
