@@ -27,7 +27,7 @@ function App() {
         ...(country && { country }),
       });
 
-      const response = await fetch(`http://localhost:3000/api/news?${queryParams}`, {
+      const response = await fetch(`https://aconews-backend-henna.vercel.app/api/news?${queryParams}`, {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
