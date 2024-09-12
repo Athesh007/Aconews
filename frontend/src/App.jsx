@@ -43,24 +43,19 @@ function App() {
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
-    var searchField = document.getElementById("inputsearch");
-    if (searchField.value.trim() === "") {
-        searchField.focus();
-        return false;
-    }else{
       fetchNews()
       setCurrentPage(1);
-    }
+
   };
 
   return (
     <div className="w-full">
+      <form onSubmit={handleFormSubmit} className="mb-8">
       <div className="w-full lg:h-[300px] md:h-[200px] h-[200px] flex flex-col items-center justify-end bg-blue-500 p-6 mb-6">
         <h1 className="text-7xl font-bold mb-8 text-white">AcoNews</h1>
         <SearchBar query={searchQuery} onQueryChange={setSearchQuery} />
       </div>
-      <form onSubmit={handleFormSubmit} className="mb-8 mx-8">
-        <div className="flex flex-col lg:flex-row md:flex-row space-y-4">
+        <div className="mx-8 flex flex-col lg:flex-row md:flex-row space-y-4">
           <div className="flex flex-row space-x-4 items-center">
             <Filters
               category={category}
