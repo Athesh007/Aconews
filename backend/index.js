@@ -17,6 +17,8 @@ app.get('/api/news', async (req, res) => {
     try {
         const { q = '', country = '', category = '', page = '1', max = 10 } = req.query;
         let url;
+        
+        //incase of category,country based news
         if (q.length!=0 && country && category) {
             url = new URL('https://gnews.io/api/v4/search');
             url.searchParams.append('q', q);
@@ -26,6 +28,7 @@ app.get('/api/news', async (req, res) => {
             url.searchParams.append('max', max);
             url.searchParams.append('page', parseInt(page));
         } else {
+            //top-headlines
             url = new URL('https://gnews.io/api/v4/top-headlines');
             url.searchParams.append('lang', 'en');
             url.searchParams.append('category', 'general');
