@@ -11,13 +11,14 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [category, setCategory] = useState('');
   const [country, setCountry] = useState('');
-
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     fetchNews();
   }, [currentPage]);
 
   const fetchNews = async () => {
     try {
+      setLoading(true)
       const queryParams = new URLSearchParams({
         q: searchQuery,
         lang: 'en',
@@ -36,7 +37,9 @@ function App() {
       const data = await response.json();
       setArticles(data.articles);
       setTotalPages(Math.ceil(data.totalResults / 10));
+      setLoading(false)
     } catch (error) {
+      setLoading(false);
       console.error('Error fetching news:', error);
     }
   };
@@ -65,9 +68,9 @@ function App() {
             />
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-800"
+              className={`px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-800 ${loading &&"cursor-not-allowed"}`}
             >
-              Search
+              {loading?"Loading...":"Search"}
             </button>
           </div>
         </div>
